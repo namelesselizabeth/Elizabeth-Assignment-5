@@ -20,23 +20,21 @@ public class CustomArrayList<T> implements CustomList<T> {
 		
 		boolean check = false;
 		
-		if (items.length > DEFAULT_ARRAY_VALUE) {
-			increaseItemsArray();
-		}
 		for(int i = 0; i < items.length; i++) {
 			while(check) {
-				
+			
 				if(items[i] == null) {
 					check = true;
 					items[i] = item;
-				}
+			}
 				
-				else {
-					check = false;
+			else {
+				check = false;
 				}
 			}
 		}
 		return true;
+		
 	}
 
 	@Override
