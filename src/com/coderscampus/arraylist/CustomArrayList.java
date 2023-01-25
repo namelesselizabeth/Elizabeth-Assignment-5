@@ -1,14 +1,13 @@
 package com.coderscampus.arraylist;
 
 public class CustomArrayList<T> implements CustomList<T> {
-	
-	public static final int DEFAULT_ARRAY_VALUE = 10;
+	int size = 0;
 	Object[] items = new Object[10];
 	
 	public Object[] increaseItemsArray() {
 		
-		Object[] tempItems = new Object[items.length*2];
-		for(int i = 0; i< items.length; i++) {
+		Object[] tempItems = new Object[size*2];
+		for(int i = 0; i < size; i++) {
 			
 			tempItems[i] = items[i];
 		}
@@ -18,33 +17,34 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@Override
 	public boolean add(T item) {
 		
-		boolean check = false;
-		
-		for(int i = 0; i < items.length; i++) {
-			while(check) {
-			
+		if(size < items.length) {
+			for(int i = 0; i < items.length; i++) {
 				if(items[i] == null) {
-					check = true;
 					items[i] = item;
-			}
-				
-			else {
-				check = false;
+					size++;
+					break;	
 				}
 			}
+			
+			return true;
 		}
-		return true;
 		
+		else {
+				items = increaseItemsArray();
+				for(int i = 0; i < items.length; i++) {
+					if(items[i] == null) {
+						items[i] = item;
+						size++;
+						break;	
+					}
+				}
+				return true;
+		}
 	}
 
 	@Override
 	public int getSize() {
-		int size = 0;
-		for(int i = 0; i < items.length; i++) {
-			if(items[i] != null) {
-				size++;
-			}
-		}
+		
 		return size;
 	}
 
